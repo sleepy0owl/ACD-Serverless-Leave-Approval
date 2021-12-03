@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import jwt from "jsonwebtoken";
 import ChromeDinoGame from "react-chrome-dino";
+import { Row, Col, Button } from "antd";
 
 // import configData from "./config.json";
 // const cognitoUrl =
@@ -39,12 +40,12 @@ const Login = () => {
       ) : (
         <div style={{ padding: "15vh 0vh" }}>
           <ChromeDinoGame />
-          {/* <Row justify="center" align="middle">
+          <Row justify="center" align="middle">
             <Col align="center"></Col>
             <Button type="primary" href={cognitoUrl}>
-              Sign In 
+              Once you are done playing, sign in to the app!
             </Button>
-          </Row> */}
+          </Row>
         </div>
       )}
     </>

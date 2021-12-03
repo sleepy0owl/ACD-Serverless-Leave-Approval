@@ -14,8 +14,8 @@ const Navbar = () => {
   const loc = useLocation();
   console.log(loc.pathname);
 
-  const navBarUserInfo = (decoded_username) => {
-    if (decoded_username === undefined)
+  const navBarUserInfo = (path, decoded_username) => {
+    if (path !== "/")
       return (
         <>
           <Button
@@ -67,7 +67,7 @@ const Navbar = () => {
       <PageHeader
         className="site-page-header"
         title="Serverless Leave Approval Application"
-        extra={[navBarUserInfo(decoded_username)]}
+        extra={[navBarUserInfo(loc.pathname, decoded_username)]}
       />
     </>
   );
