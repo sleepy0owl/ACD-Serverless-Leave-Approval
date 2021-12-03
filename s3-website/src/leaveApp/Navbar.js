@@ -18,6 +18,7 @@ const Navbar = () => {
     if (path !== "/")
       return (
         <>
+          {decoded_username}
           <Button
             style={{
               border: "none",
@@ -33,7 +34,6 @@ const Navbar = () => {
             />
             sign out
           </Button>
-          {decoded_username}
         </>
       );
     else
