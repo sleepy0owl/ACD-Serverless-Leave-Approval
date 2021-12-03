@@ -3,6 +3,20 @@ import moment from "moment";
 import Axios from "axios";
 import { GlobalContext } from "./Context";
 import configData from "./config.json";
+import {
+  Input,
+  Button,
+  Col,
+  Row,
+  Select,
+  InputNumber,
+  DatePicker,
+  AutoComplete,
+  Cascader,
+  Tooltip,
+  Card,
+} from "antd";
+const { Option } = Select;
 
 const CreateRequest = () => {
   const { token, get_user_info } = useContext(GlobalContext);
@@ -16,16 +30,14 @@ const CreateRequest = () => {
 
   useEffect(() => {
     if (startDate && endDate) {
-      var from = moment(startDate);
-      var to = moment(endDate);
-      const noDays = to.diff(from, "days") + 1;
+      const noDays = moment(endDate).diff(moment(startDate), "days") + 1;
       noDays > 0 ? setNoDays(noDays) : setNoDays(0);
     }
   }, [startDate, endDate]);
 
   var item = JSON.parse(localStorage.getItem("users"));
   var decoded_mail = item && item.email;
-  const submit_data = () => {
+  const submitData = () => {
     if (noDays > 0 && value && token) {
       const data = {
         type: "requestLeave",
@@ -60,59 +72,34 @@ const CreateRequest = () => {
     }
   };
 
+  const datePicker = (moment, dates) => {
+    setDates({
+      startDate: dates[0],
+      endDate: dates[1],
+    });
+  };
+
   return (
-    <div className="col-md-9 create--leave">
-      <span>
-        {" "}
-        <label>Start Date:</label>{" "}
-        <input
-          type="date"
-          className="form-control"
-          value={startDate}
-          onChange={(e) => setDates({ ...dates, startDate: e.target.value })}
-        />
-      </span>
-      <span>
-        {" "}
-        <label>Last Date:</label>
-        <input
-          type="date"
-          className="form-control"
-          value={endDate}
-          onChange={(e) => setDates({ ...dates, endDate: e.target.value })}
-        />
-      </span>
-      <span>
-        {" "}
-        <label>Comment:</label>{" "}
-        <input
-          style={{ width: 300 }}
-          type="text"
-          className="form-control"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-      </span>
-      <span className="text-center">
-        {" "}
-        <label>No of Days:</label> <br />{" "}
-        <b style={{ fontSize: 28 }}>{noDays}</b>{" "}
-      </span>
-      &nbsp;
-      <button className="btn btn-info" onClick={() => submit_data()}>
-        <i className="fas fa-plus"></i>
-      </button>
-      <button
-        className="btn btn-warning"
-        onClick={() => {
-          setDates({ endDate: "", startDate: "" });
-          setValue("");
-          setNoDays(0);
-        }}
-      >
-        <i className="fas fa-redo-alt"></i>
-      </button>
-    </div>
+    <>
+      <Card title={<span> Create New Request</span>} bordered={false}>
+        <div style={{ display: "flex" }}>
+          <Input.Group>
+            <DatePicker.RangePicker
+              style={{ width: "60%" }}
+              onChange={datePicker}
+            />
+            <Input
+              style={{ width: "40%" }}
+              placeholder="Reason For Leave"
+              onChange={(e) => setValue(e.target.value)}
+            />
+          </Input.Group>
+          <Button type="primary" onClick={() => submitData()}>
+            Request {noDays} {noDays < 2 ? "day" : "days"} of leave
+          </Button>
+        </div>
+      </Card>
+    </>
   );
 };
 

@@ -2,6 +2,51 @@ import Axios from "axios";
 import React, { useContext } from "react";
 import { GlobalContext } from "../Context";
 import configData from "../config.json";
+import { Table, Space, Button } from "antd";
+
+const columns = [
+  {
+    title: "Reason",
+    dataIndex: "reason",
+    key: "reason",
+  },
+  {
+    title: "Email",
+    dataIndex: "email",
+    key: "email",
+  },
+  {
+    title: "From",
+    dataIndex: "from",
+    key: "from",
+  },
+  {
+    title: "To",
+    dataIndex: "to",
+    key: "to",
+  },
+  {
+    title: "Number Of Days",
+    dataIndex: "numberOfDays",
+    key: "numberOfDays",
+  },
+  {
+    title: "Type",
+    dataIndex: "type",
+    key: "type",
+  },
+  {
+    title: "Action",
+    key: "action",
+    render: (text, record) => (
+      <Button>
+        <Space size="middle">
+          <a>Approve</a>
+        </Space>
+      </Button>
+    ),
+  },
+];
 
 const PendingRequests = () => {
   const { data, loading, get_user_info, token } = useContext(GlobalContext);
@@ -9,21 +54,21 @@ const PendingRequests = () => {
 
   var item = JSON.parse(localStorage.getItem("users"));
   var get_mail = item && item.email;
-  const approve_func = (val, token_data) => {
-    // console.log(val);
+  const approveFunction = (val, cognitoToken) => {
+    console.log(val, cognitoToken);
     var url = `https://${configData.APIDomain}.execute-api.${configData.Region}.amazonaws.com/prod/manualApproval`;
     Axios({
       method: "POST",
       url,
       data: val,
       headers: {
-        Authorization: `${token_data}`,
+        Authorization: `${cognitoToken}`,
         "Content-Type": "application/json",
       },
     })
       .then((el) => {
         setTimeout(() => {
-          get_user_info(get_mail, token_data);
+          get_user_info(get_mail, cognitoToken);
         }, 1000);
       })
       .catch((err) => {
@@ -35,51 +80,20 @@ const PendingRequests = () => {
     return <section className="mt-5 text-center">Loading...</section>;
   }
   return (
-    <section className="table-responsive mt-4">
-      <table className="table text-center table-borderless  table-hover">
-        <thead className="table--head">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Reason</th>
-            <th scope="col">Email</th>
-            <th scope="col">Form</th>
-            <th scope="col">To</th>
-            <th scope="col">No of Days</th>
-            <th scope="col">Type</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody className="table--body text-capitalize">
-          {data.pendingRequests &&
-            data.pendingRequests.length > 0 &&
-            data.pendingRequests.map((item, i) => {
-              const { from, to, numberOfDays, email, reason, type } = item;
-
-              return (
-                <tr key={i} style={{ fontSize: 16 }}>
-                  <td>{i + 1}</td>
-                  <td className="text-info font-weight-bold">
-                    <b>{reason}</b>
-                  </td>
-                  <td>{email}</td>
-                  <td>{from}</td>
-                  <td>{to}</td>
-                  <td>{numberOfDays}</td>
-                  <td>{type}</td>
-                  <td>
-                    <button
-                      className="btn btn-success"
-                      onClick={() => approve_func(item, token)}
-                    >
-                      Approve
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </table>
-    </section>
+    <>
+      <Table
+        pagination={{ position: ["none", "none"] }}
+        dataSource={data.pendingRequests}
+        columns={columns}
+        onRow={(record, rowIndex) => {
+          return {
+            onClick: (event) => {
+              approveFunction(record, token);
+            },
+          };
+        }}
+      />
+    </>
   );
 };
 

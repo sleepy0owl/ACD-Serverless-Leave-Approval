@@ -1,45 +1,39 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../Context";
 import "./Components.css";
+import { Card, Row } from "antd";
+import { NavLink } from "react-router-dom";
 
-const Cards = () => {
+const Cards = (props) => {
   const { data } = useContext(GlobalContext);
 
-  const card_fun = (text, num, color) => {
+  const card = (text, num, link) => {
     return (
-      <div className="col-md-3 mb-4">
-        <div className="card border-left-primary shadow h-100 py-2">
-          <div className="card-body">
-            <div className="row no-gutters align-items-center">
-              <div className="col mr-2">
-                <div
-                  className={`text-large font-weight-bold text-uppercase mb-1 text-${color}`}
-                >
-                  Request ({text})
-                </div>
-                <div className="h2 mb-0 font-weight-bold text-gray-800">
-                  {num}
-                </div>
-              </div>
-              <div className="col-auto">
-                <i className="fas fa-calendar fa-2x text-gray-300"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <>
+        <Card
+          style={{ width: "20vw", margin: "2vh" }}
+          title={
+            <>
+              <NavLink to={link}> {text} Requests</NavLink>
+            </>
+          }
+          bordered={false}
+        >
+          {num}
+        </Card>
+      </>
     );
   };
 
   return (
-    <div className="card--div row">
-      {card_fun("Total", data.log && data.log.length, "info")}
-      {card_fun(
+    <Row>
+      {card("Approved", data.log && data.log.length, "/all-request")}
+      {card(
         "Pending",
         data.pendingRequests && data.pendingRequests.length,
-        "warning"
+        "/pending-request"
       )}
-    </div>
+    </Row>
   );
 };
 

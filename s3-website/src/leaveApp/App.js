@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, setState } from "react";
 import Navbar from "./Navbar";
 import "./index.css";
+import "antd/dist/antd.css";
 import Home from "./Home";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Error from "./Error";

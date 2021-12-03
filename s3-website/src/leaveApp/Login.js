@@ -2,17 +2,18 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import jwt from "jsonwebtoken";
+import { Card, Button, Row, Col } from "antd";
+import ChromeDinoGame from "react-chrome-dino";
+
 import configData from "./config.json";
-
-console.log(configData);
-
 const cognitoUrl =
   `https://${configData.CognitoUserPoolDomain}.auth.${configData.Region}.amazoncognito.com/login?client_id=${configData.CognitoClientId}&response_type=token&redirect_uri=https://${configData.CloudfrontUrl}`.toString();
 
+const getParams = window.location.hash;
+const getUrl = window.location.href;
+
 const Login = () => {
   const history = useHistory();
-  var getParams = window.location.hash;
-  var getUrl = window.location.href;
 
   const checkLogin = (token) => {
     var check_access_1 = token && token.split("&")[0];
@@ -33,21 +34,21 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="text-center">
-      <button
-        className="btn"
-        style={{
-          fontSize: 30,
-          marginTop: "17%",
-          textTransform: "capitalize",
-          height: "100px",
-        }}
-      >
-        <a className="text-dark" href={cognitoUrl}>
-          Click here to login
-        </a>
-      </button>
-    </div>
+    <>
+      {getParams ? (
+        "signedin"
+      ) : (
+        <div style={{ padding: "15vh 0vh" }}>
+          <ChromeDinoGame />
+          {/* <Row justify="center" align="middle">
+            <Col align="center"></Col>
+            <Button type="primary" href={cognitoUrl}>
+              Sign In 
+            </Button>
+          </Row> */}
+        </div>
+      )}
+    </>
   );
 };
 
