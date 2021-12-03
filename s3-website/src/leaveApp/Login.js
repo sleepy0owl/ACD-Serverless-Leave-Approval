@@ -5,9 +5,9 @@ import jwt from "jsonwebtoken";
 import ChromeDinoGame from "react-chrome-dino";
 import { Row, Col, Button } from "antd";
 
-// import configData from "./config.json";
-// const cognitoUrl =
-//   `https://${configData.CognitoUserPoolDomain}.auth.${configData.Region}.amazoncognito.com/login?client_id=${configData.CognitoClientId}&response_type=token&redirect_uri=https://${configData.CloudfrontUrl}`.toString();
+import configData from "./config.json";
+const cognitoUrl =
+  `https://${configData.CognitoUserPoolDomain}.auth.${configData.Region}.amazoncognito.com/login?client_id=${configData.CognitoClientId}&response_type=token&redirect_uri=https://${configData.CloudfrontUrl}`.toString();
 
 const getParams = window.location.hash;
 const getUrl = window.location.href;
