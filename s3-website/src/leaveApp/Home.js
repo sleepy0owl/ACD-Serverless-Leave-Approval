@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Cards from "./Components/Cards";
 import CreateRequest from "./CreateRequest";
 import RequestCond from "./ManageRequest/RequestCond";
-import { Card } from "antd";
 
 const Home = () => {
   const loc = useLocation();

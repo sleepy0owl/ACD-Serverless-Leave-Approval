@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import { useLocation } from "react-router-dom";
 import { GlobalContext } from "./Context";
-import { PageHeader, Button, Dropdown, Menu } from "antd";
+import { PageHeader, Button } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
 import configData from "./config.json";

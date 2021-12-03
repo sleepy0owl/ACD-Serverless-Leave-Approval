@@ -1,4 +1,4 @@
-import React, { useState, setState } from "react";
+import React from "react";
 import Navbar from "./Navbar";
 import "./index.css";
 import "antd/dist/antd.css";

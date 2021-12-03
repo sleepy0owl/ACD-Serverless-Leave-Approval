@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../Context";
-import moment from "moment";
 import { Table } from "antd";
 
 const columns = [

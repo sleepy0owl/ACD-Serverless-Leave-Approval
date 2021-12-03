@@ -40,9 +40,7 @@ const columns = [
     key: "action",
     render: (text, record) => (
       <Button>
-        <Space size="middle">
-          <a>Approve</a>
-        </Space>
+        <Space size="middle">Approve</Space>
       </Button>
     ),
   },

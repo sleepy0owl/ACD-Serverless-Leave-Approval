@@ -2,12 +2,11 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import jwt from "jsonwebtoken";
-import { Card, Button, Row, Col } from "antd";
 import ChromeDinoGame from "react-chrome-dino";
 
-import configData from "./config.json";
-const cognitoUrl =
-  `https://${configData.CognitoUserPoolDomain}.auth.${configData.Region}.amazoncognito.com/login?client_id=${configData.CognitoClientId}&response_type=token&redirect_uri=https://${configData.CloudfrontUrl}`.toString();
+// import configData from "./config.json";
+// const cognitoUrl =
+//   `https://${configData.CognitoUserPoolDomain}.auth.${configData.Region}.amazoncognito.com/login?client_id=${configData.CognitoClientId}&response_type=token&redirect_uri=https://${configData.CloudfrontUrl}`.toString();
 
 const getParams = window.location.hash;
 const getUrl = window.location.href;

@@ -3,20 +3,7 @@ import moment from "moment";
 import Axios from "axios";
 import { GlobalContext } from "./Context";
 import configData from "./config.json";
-import {
-  Input,
-  Button,
-  Col,
-  Row,
-  Select,
-  InputNumber,
-  DatePicker,
-  AutoComplete,
-  Cascader,
-  Tooltip,
-  Card,
-} from "antd";
-const { Option } = Select;
+import { Input, Button, DatePicker, Card } from "antd";
 
 const CreateRequest = () => {
   const { token, get_user_info } = useContext(GlobalContext);
