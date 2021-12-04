@@ -18,7 +18,6 @@ const Navbar = () => {
     if (path !== "/")
       return (
         <>
-          {decoded_username}
           <Button
             style={{
               border: "none",
@@ -26,6 +25,7 @@ const Navbar = () => {
             }}
             onClick={removeTokens}
           >
+            {decoded_username}
             <UserOutlined
               style={{
                 fontSize: 20,
