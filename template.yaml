@@ -496,7 +496,7 @@ Resources:
         CustomErrorResponses:
           - ErrorCode: 403 # not found
             ResponseCode: 404
-            ResponsePagePath: "/index.html"
+            ResponsePagePath: "index.html"
         DefaultCacheBehavior:
           AllowedMethods:
             - GET
@@ -517,7 +517,7 @@ Resources:
           TargetOriginId: s3origin
           ViewerProtocolPolicy: "allow-all"
         # This DefaultRootObject configuration is not enough.
-        DefaultRootObject: "/index.html"
+        DefaultRootObject: "index.html"
         Enabled: true
         HttpVersion: http2
         Origins:
