@@ -30,24 +30,24 @@ cloudformation.describeStacks(
           if (err) console.log(err);
         }
       );
-      fs.readFile(
-        args[2] + "/s3-website/src/leaveApp/config2.json",
-        "utf8",
-        function (err, data) {
-          // Display the file content
-          console.log(data);
-          console.log(output);
-          // cors
-          var params = {
-            resourceId: "tupvzlq6mb",
-            restApiId: output.APIDomain,
-          };
-          apigateway.getResource(params, function (err, data) {
-            if (err) console.log(err, err.stack);
-            else console.log(data); // successful response
-          });
-        }
-      );
+      // fs.readFile(
+      //   args[2] + "/s3-website/src/leaveApp/config2.json",
+      //   "utf8",
+      //   function (err, data) {
+      //     // Display the file content
+      //     console.log(data);
+      //     console.log(output);
+      //     // cors
+      //     var params = {
+      //       resourceId: "tupvzlq6mb",
+      //       restApiId: output.APIDomain,
+      //     };
+      //     apigateway.getResource(params, function (err, data) {
+      //       if (err) console.log(err, err.stack);
+      //       else console.log(data); // successful response
+      //     });
+      //   }
+      // );
     }
   }
 );
