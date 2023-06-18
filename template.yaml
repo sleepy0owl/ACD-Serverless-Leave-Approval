@@ -494,9 +494,10 @@ Resources:
     Properties:
       DistributionConfig:
         CustomErrorResponses:
-          - ErrorCode: 403 # not found
-            ResponseCode: 404
-            ResponsePagePath: "index.html"
+          - ErrorCachingMinTTL: 300
+            ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: /index.html
         DefaultCacheBehavior:
           AllowedMethods:
             - GET
