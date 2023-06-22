@@ -10,6 +10,7 @@ Parameters:
   S3BucketName:
     Type: String
     Description: Auth domain used in cognito to create the sign in / sign up links
+  
 
 # Resources Section
 Resources:
@@ -170,7 +171,7 @@ Resources:
   UserInfoTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: UserInfoTable
+      TableName: !Sub "${CognitoUserPoolDomain}-UserInfoTable" 
       BillingMode: PAY_PER_REQUEST
       AttributeDefinitions:
         - AttributeName: "email"
@@ -183,7 +184,7 @@ Resources:
   LeaveTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: LeaveTable
+      TableName: !Sub "${CognitoUserPoolDomain}-LeaveTable"
       BillingMode: PAY_PER_REQUEST
       AttributeDefinitions:
         - AttributeName: "id"
@@ -196,7 +197,7 @@ Resources:
   LeaveApprovalApi2:
     Type: AWS::Serverless::Api
     Properties:
-      Name: !Sub "LeaveApprovalApi2"
+      Name: !Sub "${CognitoUserPoolDomain}-API"
       StageName: prod
       DefinitionBody:
         openapi: "3.0.1"
