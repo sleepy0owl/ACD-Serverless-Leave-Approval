@@ -1,6 +1,6 @@
 {
-    "CognitoUserPoolDomain":"acdappdomain",
+    "CognitoUserPoolDomain":"acdappdomainsandy",
     "Region":"ap-south-1",
-    "S3BucketName":"acdappbucket",
-    "StackName":"acdappstack"
+    "S3BucketName":"acdappbucketsandy",
+    "StackName":"acdappstacksandy"
 }
