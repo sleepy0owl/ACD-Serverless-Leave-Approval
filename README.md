@@ -1,6 +1,8 @@
 # ACD-Serverless-Leave-Approval
 
 Building a real-world serverless application that leverages AWS services like API Gateway, Lambda, DynamoDB, Step functions, S3, IAM, Cloudformation, etc.,
+# Features
+- Apply leave and forget about it
 
 ## Usage
 
